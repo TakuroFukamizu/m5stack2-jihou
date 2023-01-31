@@ -29,7 +29,7 @@
 
 // ---------------------------------
 
-// 設定は .config.h に記述する
+// 設定は config.h に記述する
 //     ".example.config.h" をリネームして使用してください
 
 // ---------------------------------
@@ -108,7 +108,6 @@ void setup() {
     out->SetOutputModeMono(true);
     out->SetGain((float)OUTPUT_GAIN/100.0);
     mp3 = new AudioGeneratorMP3();
-    mp3->begin(id3, out);
     play_sound(); // for test
 }
 
