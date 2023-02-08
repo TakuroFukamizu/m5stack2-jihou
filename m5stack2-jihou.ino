@@ -249,6 +249,20 @@ void loop() {
 }
 
 // ---------------------------------
+static int header_height = 0;
+void MDCallback(void *cbData, const char *type, bool isUnicode, const char *string) {
+  (void)cbData;
+  if (string[0] == 0) { return; }
+  if (strcmp(type, "eof") == 0) {
+    M5.Display.display();
+    return;
+  }
+  int y = M5.Display.getCursorY();
+  if (y+1 >= header_height) { return; }
+  M5.Display.fillRect(0, y, M5.Display.width(), 12, M5.Display.getBaseColor());
+  M5.Display.printf("%s: %s", type, string);
+  M5.Display.setCursor(0, y+12);
+}
 
 
 void play_sound() {
